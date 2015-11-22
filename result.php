@@ -93,19 +93,18 @@ $result = new Aws\Sns\SnsClient([
 #print_r($result);
 //echo "sns Topic";
 
-$result1 = $result->listTopics(array(
-    
+/to list topics
+$result = $sns->listTopics(array(
+
 ));
-#print_r($result1);
 
-//to retrieve Topic ARN of ImageTopicSK
-foreach ($result1['Topics'] as $key => $value){
+//to get Topic ARN of 
+foreach ($result['Topics'] as $key => $value){
 
-if(preg_match("/ImageTopicSK/", $result1['Topics'][$key]['TopicArn'])){
+if(preg_match("/ImageTopicSK/", $result['Topics'][$key]['TopicArn'])){
 $topicARN =$result['Topics'][$key]['TopicArn'];
 }
 }
-
 
 $uname=$_POST['username'];
 $email = $_POST['useremail'];
