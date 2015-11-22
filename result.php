@@ -135,8 +135,8 @@ $stmt->close();
 $pub = $sns->publish(array(
     'TopicArn' => $topicARN,
     // Message is required
-    'Subject' => 'Test',
-    'Message' => 'test msg',
+    'Subject' => 'Image Upload Notification',
+    'Message' => 'Image is successfully uploaded and saved!',
     
     
 ));
