@@ -41,19 +41,17 @@ $sns = new Aws\Sns\SnsClient([
     'region'  => 'us-east-1'
 ]);
 
-$result1 = $result->listTopics(array(
-    
+$result = $sns->listTopics(array(
+
 ));
-#print_r($result1);
 
-//to retrieve Topic ARN of ImageTopicSK
-foreach ($result1['Topics'] as $key => $value){
 
-if(preg_match("/ImageTopicSK/", $result1['Topics'][$key]['TopicArn'])){
+foreach ($result['Topics'] as $key => $value){
+
+if(preg_match("/ImageTopicSK/", $result['Topics'][$key]['TopicArn'])){
 $topicARN =$result['Topics'][$key]['TopicArn'];
 }
 }
-
 
 $result = $sns->subscribe(array(
     // TopicArn is required

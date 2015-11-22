@@ -83,22 +83,23 @@ if (mysqli_connect_errno()) {
 else {
 echo "Success";
 }
+
 #create sns client
 
-$result = new Aws\Sns\SnsClient([
+$sns = new Aws\Sns\SnsClient([
     'version' => 'latest',
     'region'  => 'us-east-1'
 ]);
 
 #print_r($result);
 //echo "sns Topic";
+//to list topics
 
-/to list topics
 $result = $sns->listTopics(array(
 
 ));
 
-//to get Topic ARN of 
+
 foreach ($result['Topics'] as $key => $value){
 
 if(preg_match("/ImageTopicSK/", $result['Topics'][$key]['TopicArn'])){
@@ -131,7 +132,7 @@ printf("%d Row inserted.\n", $stmt->affected_rows);
 
 $stmt->close();
 
-$pub = $result->publish(array(
+$pub = $sns->publish(array(
     'TopicArn' => $topicARN,
     // Message is required
     'Subject' => 'Test',
